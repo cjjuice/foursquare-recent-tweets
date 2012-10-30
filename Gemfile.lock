@@ -134,6 +134,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   foursquare2
   jquery-rails
+  json
   omniauth-foursquare
   pg
   rails (= 3.2.8)
