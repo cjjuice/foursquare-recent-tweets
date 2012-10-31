@@ -13,7 +13,7 @@ class CheckinsController < ApplicationController
 
       reply = "https://api.foursquare.com/v2/checkins/#{checkin["id"]}/reply?text=#{"#{tweet_user}:#{tweet_text}"&oauth_token="#{user.oauth_token}"
 
-      render :json => reply  unless reply.empty?
+      render :json => reply
     else
       raise  "secret does not match"
     end
