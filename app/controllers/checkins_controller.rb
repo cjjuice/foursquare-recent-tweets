@@ -11,7 +11,7 @@ class CheckinsController < ApplicationController
       tweet_text = tweet.text
 
 
-      reply = "https://api.foursquare.com/v2/checkins/#{checkin['id']}/reply?text=#{tweet_user}:#{tweet_text}&oauth_token=#{user.oauth_token}"
+      reply = "https://api.foursquare.com/v2/checkins/#{checkin['id']}/reply?text=#{tweet_user}:#{tweet_text}&oauth_token=#{user.first.oauth_token}"
 
       render :json => reply unless reply.empty?
     else
