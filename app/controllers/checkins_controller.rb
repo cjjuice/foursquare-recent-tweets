@@ -1,4 +1,7 @@
 class CheckinsController < ApplicationController
+  require "uri"
+  require "net/http"
+
   config.force_ssl = true
 
   def push
@@ -10,8 +13,7 @@ class CheckinsController < ApplicationController
       tweet_user = tweet.from_user
       tweet_text = tweet.text
 
-
-      reply = "https://api.foursquare.com/v2/checkins/#{checkin['id']}/reply?text=#{tweet_user}:#{tweet_text}&oauth_token=#{user.first.oauth_token}"
+      reply = HTTParty.post("https://api.foursquare.com/v2/checkins/#{checkin['id']}/reply?text=#{tweet_user}:#{tweet_text}&oauth_token=#{user.first.oauth_token}&v=20121031")
 
       render :json => reply unless reply.empty?
     else
