@@ -7,10 +7,14 @@ class CheckinsController < ApplicationController
       user = User.where(uid: checkin["user"]["id"])
  
       tweet = Twitter.search(checkin["venue"]["name"], :count => 1 , :geocode => "#{checkin["venue"]["location"]["lat"]},#{checkin["venue"]["location"]["lng"]},1mi").results.first
-      tweet_user = tweet.from_user
-      tweet_text = tweet.text
+      
+      if tweet != nil
+        tweet_text = "#{tweet.from_user} : #{tweet.text}" 
+      else
+        tweet_text = "Sorry! No recent tweets from your location."
+      end  
 
-      reply = HTTParty.post(URI.encode("https://api.foursquare.com/v2/checkins/#{checkin['id']}/reply?text=#{tweet_user}:#{tweet_text}&oauth_token=#{user.first.oauth_token}&v=20121031"))
+      reply = HTTParty.post(URI.encode("https://api.foursquare.com/v2/checkins/#{checkin['id']}/reply?text=#{tweet_text}&oauth_token=#{user.first.oauth_token}&v=20121031"))
 
       render :json => reply unless reply.empty?
     else
