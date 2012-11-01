@@ -1,7 +1,4 @@
 class CheckinsController < ApplicationController
-  require "uri"
-  require "net/http"
-
   config.force_ssl = true
 
   def push
