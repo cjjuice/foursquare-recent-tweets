@@ -5,10 +5,28 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-
+<div class="container">
+  <% flash.each do |name, msg| %>
+    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+      <a class="close" data-dismiss="alert">×</a>
+      <%= msg %>
+    </div>
+  <% end %>
+  <div id='logo'>
+    <img src='assets/logo.png'/>
+  </div>
+  
+  <div id='info'>
+    <h1>Recent Tweet</h1>
+    <h3>Discover nearby tweets about your current location.</h3> 
+  </div>
 <%= yield %>
-
+  <div id='author'>
+    <p> feedback? ideas? - <a href='http://www.twitter.com/cbordeleau' >@cbordeleau</a></p>
+  </div>
+</div>
 </body>
 </html>
