@@ -7,24 +7,24 @@ class CheckinsController < ApplicationController
       user = User.where(uid: checkin["user"]["id"])
  
       tweet = Twitter.search(checkin["venue"]["name"], :count => 1 , :geocode => "#{checkin["venue"]["location"]["lat"]},#{checkin["venue"]["location"]["lng"]},1mi", :result_type => "recent").results.first
-      tweet_time = ((Time.now - tweet.created_at)/60).round
       
-      
-      if tweet_time < 60 
-        tweet_time_text = "#{tweet_time} minutes ago"
-      elsif tweet_time >= 60 && tweet_time < 90  
-        tweet_time_text = "about 1 hour ago"
-      else
-        tweet_time_text = "about #{(tweet_time/60).round} hours ago"
-      end
-          
       if tweet != nil
-        tweet_text = "@#{tweet.from_user} : #{tweet.text} - #{tweet_time_text}" 
+        tweet_time = ((Time.now - tweet.created_at)/60).round
+        tweet_user_url = "https://mobile.twitter.com/#{tweet.from_user}"
+          if tweet_time < 60 
+            tweet_time_text = "#{tweet_time} minutes ago"
+          elsif tweet_time >= 60 && tweet_time < 90  
+            tweet_time_text = "about 1 hour ago"
+          else
+            tweet_time_text = "about #{(tweet_time/60).round} hours ago"
+          end
+        tweet_text = "@#{tweet.from_user} : #{tweet.text} - #{tweet_time_text}"   
       else
+        tweet_user_url = nil
         tweet_text = "Sorry! No recent tweets from your location."
       end  
-
-      reply = HTTParty.post(URI.encode("https://api.foursquare.com/v2/checkins/#{checkin['id']}/reply?text=#{tweet_text}&oauth_token=#{user.first.oauth_token}&v=20121031"))
+      
+      reply = HTTParty.post(URI.encode("https://api.foursquare.com/v2/checkins/#{checkin['id']}/reply?text=#{tweet_text}&oauth_token=#{user.first.oauth_token}&url=#{tweet_user_url}&v=20121031"))
 
       render :json => reply unless reply.empty?
     else
