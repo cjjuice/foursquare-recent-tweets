@@ -15,6 +15,8 @@ class CheckinsController < ApplicationController
             tweet_time_text = "#{tweet_time} minutes ago"
           elsif tweet_time >= 60 && tweet_time < 90  
             tweet_time_text = "about 1 hour ago"
+          elsif (tweet_time/60) >= 48
+            tweet_time_text = "about #{((tweet_time/60)/24).round} days ago"   
           else
             tweet_time_text = "about #{(tweet_time/60).round} hours ago"
           end
