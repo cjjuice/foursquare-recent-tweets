@@ -7,7 +7,7 @@ gem 'rails', '3.2.8'
 
 gem 'httparty'
 gem 'pg'
-gem 'twitter'
+gem 'twitter', '~> 4.6.2'
 gem 'omniauth-foursquare'
 gem 'twitter-bootstrap-rails' 
 
