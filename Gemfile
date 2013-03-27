@@ -10,6 +10,7 @@ gem 'pg'
 gem 'twitter', '~> 4.6.2'
 gem 'omniauth-foursquare'
 gem 'twitter-bootstrap-rails' 
+gem 'typhoeus', '~> 0.3.3'
 
 # Gems used only for assets and not required
 # in production environments by default.

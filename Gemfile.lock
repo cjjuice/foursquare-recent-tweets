@@ -139,6 +139,8 @@ GEM
       less-rails (~> 2.2.3)
       railties (>= 3.1)
       therubyracer (>= 0.10.2)
+    typhoeus (0.3.3)
+      mime-types
     tzinfo (0.3.34)
     uglifier (1.3.0)
       execjs (>= 0.3.0)
@@ -158,4 +160,5 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   twitter (~> 4.6.2)
   twitter-bootstrap-rails
+  typhoeus (~> 0.3.3)
   uglifier (>= 1.0.3)
