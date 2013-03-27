@@ -1,3 +1,4 @@
+Twitter.endpoint = "http://api.twitter.com"
 Twitter.configure do |config|
   config.consumer_key = "nfaOrL6p0Q0gomEwmkUFw"
   config.consumer_secret = "nvpBIB3ZYVNcMwKiAg6cjs9DS3787QpcEiKWirGkiO0"
