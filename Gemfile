@@ -9,7 +9,7 @@ gem 'httparty'
 gem 'pg'
 gem 'twitter', '~> 4.6.2'
 gem 'omniauth-foursquare'
-gem 'twitter-bootstrap-rails' 
+gem 'twitter-bootstrap-rails', '2.2.6' 
 gem 'typhoeus', '~> 0.3.3'
 
 gem 'therubyracer'
